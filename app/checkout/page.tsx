@@ -173,10 +173,9 @@ export default function CheckoutPage() {
                 </div>
               </div>
 
-              {/* Age-appropriate Pay Later note — not promoted */}
+              {/* Payment note */}
               <p className="text-xs mb-5 p-3 rounded-xl" style={{color:C.muted,background:'rgba(196,181,253,0.04)',border:`1px solid rgba(196,181,253,0.08)`}}>
-                Pay Later options may be available for eligible adult users where supported.
-                Age and eligibility restrictions apply. You'll review all available options on PayPal.
+                You'll review and confirm payment securely on PayPal before anything is charged.
               </p>
 
               {/* Trust */}

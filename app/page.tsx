@@ -35,7 +35,7 @@ export default function Home() {
               <p className="text-base sm:text-lg leading-relaxed max-w-md mb-8"
                 style={{color:C.muted, fontFamily:'DM Sans'}}>
                 MIRRA is where you build a living digital identity — through creator worlds,
-                quests, and collectibles that actually mean something.
+                quests, and digital identity items that actually mean something.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
@@ -64,9 +64,9 @@ export default function Home() {
               <div className="w-full max-w-sm glass-card rounded-3xl overflow-hidden glow-violet">
                 <div className="p-5 border-b" style={{borderColor:'rgba(196,181,253,0.08)',background:`${C.plum}15`}}>
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl"
+                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
                       style={{background:`linear-gradient(135deg,${C.plum},${C.violet})`}}>
-                      💜
+                      <MirraLogo size={28}/>
                     </div>
                     <div>
                       <div className="font-display font-bold text-base text-white">Yuki's MIRRA Self</div>
@@ -269,7 +269,7 @@ export default function Home() {
             Be first to enter<br/>the MIRRA season
           </h2>
           <p className="text-sm leading-relaxed mb-8" style={{color:C.muted}}>
-            Founding members get early world access, an exclusive item pack, and a founding badge — never restocked.
+            Founding members get early world access, an exclusive item pack, and a Season 01 founding badge.
           </p>
           <Link href="/waitlist"
             className="flex items-center justify-center gap-2 w-full py-4 rounded-2xl font-display font-bold text-base text-white transition-all hover:scale-[1.02] active:scale-[0.98]"

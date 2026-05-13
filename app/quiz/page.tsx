@@ -1,9 +1,50 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Check,
+  BookOpen, Cpu, Leaf, Flame,
+  Tv2, Gamepad2, Music, Shirt,
+  Archive, Heart, Star, Zap,
+  Smartphone, PlaySquare, MessageSquare, Shield,
+  EyeOff, Video, Users, Target,
+  Globe,
+} from 'lucide-react';
 import { quizQuestions } from '@/lib/data';
 import { MirraLogo, C } from '@/components/ui';
+
+// Map option IDs to lucide icons — keeps emoji out of UI
+const OPTION_ICONS: Record<string, React.ReactNode> = {
+  // aesthetic
+  'dark-academia': <BookOpen size={20}/>,
+  'cyber-pop':     <Cpu size={20}/>,
+  'soft-life':     <Leaf size={20}/>,
+  'streetcore':    <Flame size={20}/>,
+  // fandom
+  'anime':         <Tv2 size={20}/>,
+  'gaming':        <Gamepad2 size={20}/>,
+  'music':         <Music size={20}/>,
+  'fashion':       <Shirt size={20}/>,
+  // spending mood
+  'collector':     <Archive size={20}/>,
+  'supporter':     <Heart size={20}/>,
+  'experience':    <Star size={20}/>,
+  'earner':        <Zap size={20}/>,
+  // platform
+  'tiktok':        <Smartphone size={20}/>,
+  'youtube':       <PlaySquare size={20}/>,
+  'twitter':       <MessageSquare size={20}/>,
+  'discord':       <Shield size={20}/>,
+  // social style
+  'lurker':        <EyeOff size={20}/>,
+  'creator':       <Video size={20}/>,
+  'connector':     <Users size={20}/>,
+  'curator':       <Target size={20}/>,
+  // country
+  'us':            <span className="text-lg">🇺🇸</span>,
+  'uk':            <span className="text-lg">🇬🇧</span>,
+  'jp':            <span className="text-lg">🇯🇵</span>,
+  'other':         <Globe size={20}/>,
+};
 
 export default function QuizPage() {
   const router = useRouter();
@@ -18,6 +59,7 @@ export default function QuizPage() {
     const newAnswers = { ...answers, [question.id]: selected };
     setAnswers(newAnswers);
     if (isLast) {
+      // TODO: connect to Supabase — save to profiles table
       sessionStorage.setItem('mirra_quiz', JSON.stringify(newAnswers));
       router.push('/profile');
     } else {
@@ -38,12 +80,8 @@ export default function QuizPage() {
       <div className="orb w-[300px] h-[300px] bottom-10 -left-10 opacity-20"
         style={{background:`radial-gradient(circle,${C.violet}20,transparent)`}}/>
 
-      {/* Subtle identity preview glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full opacity-8"
-        style={{background:`radial-gradient(circle,${C.violet}30,transparent)`,filter:'blur(60px)',pointerEvents:'none'}}/>
-
       <div className="mirra-container-narrow w-full flex flex-col items-center">
-        {/* Progress */}
+        {/* Progress bar */}
         <div className="w-full mb-8 pt-4">
           <div className="flex items-center justify-between mb-4">
             <button onClick={handleBack} disabled={step === 0}
@@ -60,7 +98,9 @@ export default function QuizPage() {
                   }}/>
               ))}
             </div>
-            <span className="text-xs font-display" style={{color:C.muted}}>{step + 1}/{quizQuestions.length}</span>
+            <span className="text-xs font-display" style={{color:C.muted}}>
+              {step + 1}/{quizQuestions.length}
+            </span>
           </div>
         </div>
 
@@ -83,6 +123,7 @@ export default function QuizPage() {
         <div className="w-full grid grid-cols-2 gap-3 mb-8">
           {question.options.map(option => {
             const isActive = selected === option.id;
+            const icon = OPTION_ICONS[option.id];
             return (
               <button key={option.id} onClick={() => setSelected(option.id)}
                 className="relative rounded-2xl p-4 text-left transition-all duration-200 cursor-pointer"
@@ -98,7 +139,14 @@ export default function QuizPage() {
                     <Check size={10} className="text-white"/>
                   </div>
                 )}
-                <div className="text-2xl mb-2">{option.emoji}</div>
+                {/* Icon */}
+                <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-2.5"
+                  style={{
+                    background: isActive ? `${C.violet}30` : 'rgba(196,181,253,0.06)',
+                    color: isActive ? C.lavender : C.muted,
+                  }}>
+                  {icon}
+                </div>
                 <div className="font-display font-bold text-sm leading-snug"
                   style={{color: isActive ? C.pearl : '#D1D5DB'}}>
                   {option.label}
