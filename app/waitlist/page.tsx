@@ -1,144 +1,145 @@
 'use client';
 import { useState } from 'react';
-import { Check, Sparkles, Gift, Users } from 'lucide-react';
+import { Check, Sparkles } from 'lucide-react';
+import { C } from '@/components/ui';
 
 const INTEREST_TAGS = [
-  { id: 'gaming', label: 'Gaming', emoji: '🎮', color: '#818cf8' },
-  { id: 'fashion', label: 'Fashion', emoji: '✨', color: '#f472b6' },
-  { id: 'beauty', label: 'Beauty', emoji: '💅', color: '#f9a8d4' },
-  { id: 'anime', label: 'Anime', emoji: '⛩️', color: '#c084fc' },
-  { id: 'music', label: 'Music', emoji: '🎧', color: '#34d399' },
-  { id: 'creators', label: 'Creators', emoji: '🎬', color: '#fbbf24' },
-  { id: 'food', label: 'Food', emoji: '🍜', color: '#f97316' },
-  { id: 'events', label: 'Events', emoji: '🎪', color: '#a3e635' },
+  { id:'gaming',   label:'Gaming',   emoji:'🎮', color:'#818CF8' },
+  { id:'fashion',  label:'Fashion',  emoji:'✨', color:'#F472B6' },
+  { id:'beauty',   label:'Beauty',   emoji:'💅', color:'#F9A8D4' },
+  { id:'anime',    label:'Anime',    emoji:'⛩️', color:'#C4B5FD' },
+  { id:'music',    label:'Music',    emoji:'🎧', color:'#34D399' },
+  { id:'creators', label:'Creators', emoji:'🎬', color:'#FCD34D' },
+  { id:'food',     label:'Food',     emoji:'🍜', color:'#FB923C' },
+  { id:'events',   label:'Events',   emoji:'🎪', color:'#A3E635' },
 ];
 
 export default function WaitlistPage() {
-  const [email, setEmail] = useState('');
-  const [country, setCountry] = useState('');
+  const [email, setEmail]         = useState('');
+  const [country, setCountry]     = useState('');
   const [interests, setInterests] = useState<string[]>([]);
   const [submitted, setSubmitted] = useState(false);
-  const [referralCode] = useState('MIRRA-' + Math.random().toString(36).slice(2,8).toUpperCase());
+
+  // Referral code generated client-side for demo — use Supabase to persist
+  const [code] = useState('MIRRA-'+ Math.random().toString(36).slice(2,8).toUpperCase());
 
   function toggleInterest(id: string) {
-    setInterests(prev =>
-      prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
-    );
+    setInterests(p => p.includes(id) ? p.filter(i=>i!==id) : [...p,id]);
   }
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    // TODO: connect to Supabase — insert into waitlist table
-    // Fields: email, country, interests (jsonb), referral_code, created_at
+    // TODO: connect to Supabase
+    // Table: waitlist — columns: email, country, interests (jsonb), referral_code, created_at
+    // Use upsert on email to avoid duplicates
     setSubmitted(true);
   }
 
   return (
     <div className="min-h-screen pb-16 relative overflow-hidden">
-      <div className="orb w-96 h-96 top-0 left-1/2 -translate-x-1/2 opacity-30"
-        style={{background:'radial-gradient(circle,#c084fc20,transparent)'}}/>
-      <div className="orb w-72 h-72 bottom-20 -right-10 opacity-20"
-        style={{background:'radial-gradient(circle,#34d39920,transparent)'}}/>
+      <div className="orb w-96 h-96 top-0 left-1/2 -translate-x-1/2 opacity-25"
+        style={{background:`radial-gradient(circle,${C.plum}20,transparent)`}}/>
+      <div className="orb w-72 h-72 bottom-20 -right-10 opacity-15"
+        style={{background:`radial-gradient(circle,${C.violet}15,transparent)`}}/>
 
       <div className="px-4 pt-24 pb-8 max-w-sm mx-auto relative z-10">
         {/* Hero */}
-        <div className="text-center mb-10">
-          <div className="w-16 h-16 rounded-3xl bg-gradient-to-br from-[#c084fc] to-[#818cf8] flex items-center justify-center text-3xl mx-auto mb-5 float glow-aurora">
-            ✨
+        <div className="text-center mb-9">
+          <div className="w-16 h-16 rounded-3xl flex items-center justify-center text-3xl mx-auto mb-5 float glow-violet"
+            style={{background:`linear-gradient(135deg,${C.plum},${C.violet})`}}>
+            ✦
           </div>
-          <div className="inline-flex items-center gap-2 glass px-3 py-1.5 rounded-full text-xs font-display mb-4"
-            style={{color:'#fbbf24',letterSpacing:'0.12em'}}>
+          <div className="inline-flex items-center gap-2 glass px-3 py-1.5 rounded-full text-xs font-display font-semibold mb-4"
+            style={{color:C.lavender,letterSpacing:'0.12em'}}>
             👑 Founding Member Access
           </div>
-          <h1 className="font-display font-800 text-3xl text-white mb-3 leading-tight">
-            Be first in.<br/>
-            <span className="text-gradient-aurora">Shape the culture.</span>
+          <h1 className="font-display font-extrabold text-3xl text-white mb-3 leading-tight">
+            Be first to enter<br/>
+            <span className="text-gradient-violet">the first culture season.</span>
           </h1>
-          <p className="text-[#9ca3af] text-sm font-body leading-relaxed">
-            Founding members get early world access, exclusive items, and a founding member badge that's never available again.
+          <p className="text-sm leading-relaxed" style={{color:C.muted}}>
+            Founding members get early world access, a free starter item pack, and a founding badge that's never available again.
           </p>
         </div>
 
-        {/* Founding member perks */}
-        <div className="glass rounded-2xl p-4 mb-8">
-          <div className="text-xs font-display uppercase tracking-widest text-[#6b7280] mb-3"
-            style={{letterSpacing:'0.1em'}}>Founding member perks</div>
+        {/* Perks list */}
+        <div className="glass-card rounded-2xl p-4 mb-7">
+          <div className="text-xs font-display font-semibold uppercase mb-3"
+            style={{color:C.muted,letterSpacing:'0.1em'}}>Founding member perks</div>
           <div className="space-y-2">
             {[
-              {icon:'👑',text:'Exclusive Founding Member badge (never restocked)'},
+              {icon:'👑',text:'Exclusive Founding Member badge — never restocked'},
               {icon:'⚡',text:'First access to every new culture world'},
               {icon:'💎',text:'Free starter digital item pack on launch'},
-              {icon:'🎯',text:'Shape the platform with early feedback access'},
-              {icon:'💰',text:'Locked-in founding member pricing forever'},
-            ].map(perk=>(
-              <div key={perk.text} className="flex items-start gap-2.5">
-                <span className="text-base flex-shrink-0">{perk.icon}</span>
-                <span className="text-[#d1d5db] text-xs font-body leading-relaxed">{perk.text}</span>
+              {icon:'🎯',text:'Shape the platform through early feedback access'},
+              {icon:'🔒',text:'Founding member pricing locked in'},
+            ].map(p=>(
+              <div key={p.text} className="flex items-start gap-2.5">
+                <span className="text-base flex-shrink-0">{p.icon}</span>
+                <span className="text-xs leading-relaxed" style={{color:'#D1D5DB'}}>{p.text}</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Waitlist counter */}
-        <div className="flex items-center justify-center gap-3 mb-8">
-          <div className="flex -space-x-2">
-            {['AK','TN','JW','MS','HY'].map((init,i)=>(
-              <div key={init} className="w-8 h-8 rounded-full border-2 border-[#050508] flex items-center justify-center text-xs font-display font-700"
-                style={{background:`linear-gradient(135deg,${['#c084fc','#f472b6','#fbbf24','#34d399','#818cf8'][i]},${['#818cf8','#c084fc','#f472b6','#818cf8','#34d399'][i]})`}}>
-                {init}
-              </div>
-            ))}
-          </div>
-          <div className="text-sm font-body text-[#9ca3af]">
-            <span className="text-white font-display font-700">12,847</span> on waitlist
-          </div>
+        {/* Status — no fake numbers */}
+        <div className="flex items-center justify-center gap-2 mb-7 glass px-4 py-2.5 rounded-full">
+          <div className="w-2 h-2 rounded-full pulse-glow" style={{background:C.violet}}/>
+          <p className="text-xs" style={{color:C.muted,fontFamily:'DM Sans'}}>
+            Early access pilot now forming — join the first culture season
+          </p>
         </div>
 
+        {/* Form */}
         {submitted ? (
-          <div className="glass rounded-3xl p-8 text-center glow-aurora">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#c084fc] to-[#34d399] flex items-center justify-center text-3xl mx-auto mb-4 float">
-              ✨
+          <div className="glass-card rounded-3xl p-8 text-center glow-violet">
+            <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4 float"
+              style={{background:`linear-gradient(135deg,${C.plum},${C.violet})`}}>
+              ✦
             </div>
-            <div className="font-display font-800 text-2xl text-white mb-2">You're in! 🎉</div>
-            <p className="text-[#9ca3af] text-sm font-body leading-relaxed mb-6">
+            <div className="font-display font-extrabold text-2xl text-white mb-2">You're in! 🎉</div>
+            <p className="text-sm leading-relaxed mb-6" style={{color:C.muted}}>
               Welcome to the MIRRA founding community. We'll notify you the moment early access opens.
             </p>
-            <div className="glass rounded-xl p-4 mb-4">
-              <div className="text-xs font-display uppercase tracking-widest text-[#6b7280] mb-2"
-                style={{letterSpacing:'0.1em'}}>Your referral code</div>
-              <div className="font-display font-800 text-lg text-gradient-aurora">{referralCode}</div>
-              <p className="text-[#6b7280] text-xs font-body mt-1">
-                Share with friends to move up the waitlist and unlock bonus items
+            <div className="glass-card rounded-xl p-4 mb-4">
+              <div className="text-xs font-display font-semibold uppercase mb-2"
+                style={{color:C.muted,letterSpacing:'0.1em'}}>Your referral code</div>
+              <div className="font-display font-extrabold text-lg text-gradient-violet">{code}</div>
+              <p className="text-xs mt-1" style={{color:C.muted}}>
+                Share with friends to unlock bonus items on launch day
               </p>
             </div>
-            <div className="flex gap-2">
-              <button onClick={() => navigator.clipboard?.writeText(`Join MIRRA — the social identity platform for Gen Z. Use my code ${referralCode} for founding member access: https://mirra.app/waitlist`)}
-                className="flex-1 py-3 rounded-xl text-sm font-display font-600 text-white"
-                style={{background:'linear-gradient(135deg,#c084fc,#818cf8)'}}>
-                Copy invite link
-              </button>
-            </div>
+            <button
+              onClick={()=>navigator.clipboard?.writeText(
+                `Join MIRRA — the social identity platform for the next generation. Use my code ${code}: https://mirra.app/waitlist`
+              )}
+              className="w-full py-3 rounded-xl text-sm font-display font-bold text-white"
+              style={{background:`linear-gradient(135deg,${C.plum},${C.violet})`}}>
+              Copy invite link
+            </button>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-display text-[#9ca3af] mb-1.5">Email address</label>
+              <label className="block text-xs font-display font-semibold mb-1.5"
+                style={{color:C.muted}}>Email address</label>
               <input type="email" required placeholder="you@example.com"
-                value={email} onChange={e => setEmail(e.target.value)}
-                className="w-full glass rounded-xl px-4 py-3.5 text-sm font-body text-white placeholder-[#4b5563] outline-none transition-all"
-                style={{border:'1px solid rgba(255,255,255,0.08)'}}/>
+                value={email} onChange={e=>setEmail(e.target.value)}
+                className="w-full rounded-xl px-4 py-3.5 text-sm outline-none"
+                style={{background:'rgba(196,181,253,0.04)',border:'1px solid rgba(196,181,253,0.1)',fontFamily:'DM Sans',color:C.pearl}}/>
             </div>
 
             <div>
-              <label className="block text-xs font-display text-[#9ca3af] mb-1.5">Where are you based?</label>
+              <label className="block text-xs font-display font-semibold mb-2"
+                style={{color:C.muted}}>Where are you based?</label>
               <div className="flex gap-2">
                 {[{v:'us',f:'🇺🇸',l:'US'},{v:'uk',f:'🇬🇧',l:'UK'},{v:'jp',f:'🇯🇵',l:'Japan'}].map(c=>(
                   <button type="button" key={c.v} onClick={()=>setCountry(c.v)}
-                    className="flex-1 flex flex-col items-center gap-1 py-3 rounded-xl text-sm font-display font-600 transition-all"
+                    className="flex-1 flex flex-col items-center gap-1 py-3 rounded-xl text-sm font-display font-semibold transition-all"
                     style={{
-                      background:country===c.v?'linear-gradient(135deg,#c084fc,#818cf8)':'rgba(255,255,255,0.04)',
-                      border:`1px solid ${country===c.v?'transparent':'rgba(255,255,255,0.08)'}`,
-                      color:country===c.v?'#fff':'#9ca3af',
+                      background:country===c.v?`linear-gradient(135deg,${C.plum},${C.violet})`:'rgba(196,181,253,0.04)',
+                      border:`1px solid ${country===c.v?'transparent':'rgba(196,181,253,0.1)'}`,
+                      color:country===c.v?'#fff':C.muted,
                     }}>
                     <span className="text-xl">{c.f}</span>
                     <span className="text-xs">{c.l}</span>
@@ -148,20 +149,23 @@ export default function WaitlistPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-display text-[#9ca3af] mb-2">I'm into... <span className="text-[#6b7280]">(pick all that apply)</span></label>
+              <label className="block text-xs font-display font-semibold mb-2"
+                style={{color:C.muted}}>
+                I'm into… <span style={{color:C.subtle}}>(pick all that apply)</span>
+              </label>
               <div className="flex flex-wrap gap-2">
-                {INTEREST_TAGS.map(tag => {
-                  const isActive = interests.includes(tag.id);
+                {INTEREST_TAGS.map(tag=>{
+                  const active = interests.includes(tag.id);
                   return (
-                    <button type="button" key={tag.id} onClick={() => toggleInterest(tag.id)}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-display font-600 transition-all"
+                    <button type="button" key={tag.id} onClick={()=>toggleInterest(tag.id)}
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-display font-semibold transition-all"
                       style={{
-                        background: isActive ? `${tag.color}20` : 'rgba(255,255,255,0.04)',
-                        border: `1px solid ${isActive ? tag.color + '60' : 'rgba(255,255,255,0.08)'}`,
-                        color: isActive ? tag.color : '#9ca3af',
+                        background: active?`${tag.color}20`:'rgba(196,181,253,0.04)',
+                        border:`1px solid ${active?tag.color+'60':'rgba(196,181,253,0.1)'}`,
+                        color: active?tag.color:C.muted,
                       }}>
                       {tag.emoji} {tag.label}
-                      {isActive && <Check size={10}/>}
+                      {active && <Check size={10}/>}
                     </button>
                   );
                 })}
@@ -169,12 +173,13 @@ export default function WaitlistPage() {
             </div>
 
             <button type="submit"
-              className="flex items-center justify-center gap-2 w-full py-4 rounded-2xl font-display font-800 text-base text-white transition-all hover:scale-[1.02] active:scale-[0.98] mt-2"
-              style={{background:'linear-gradient(135deg,#c084fc,#818cf8,#34d399)',boxShadow:'0 8px 40px rgba(192,132,252,0.4)'}}>
-              <Sparkles size={16}/>
-              Join the founding waitlist
+              className="flex items-center justify-center gap-2 w-full py-4 rounded-2xl font-display font-extrabold text-base text-white transition-all hover:scale-[1.02] active:scale-[0.98] mt-2"
+              style={{background:`linear-gradient(135deg,${C.plum},${C.violet})`,boxShadow:`0 8px 40px ${C.plum}55`}}>
+              <Sparkles size={16}/> Join the founding waitlist
             </button>
-            <p className="text-[#374151] text-xs text-center font-body">No spam ever · Founding member perks on launch · Free to join</p>
+            <p className="text-xs text-center" style={{color:C.subtle}}>
+              No spam ever · Founding member perks on launch · Free to join
+            </p>
           </form>
         )}
       </div>
