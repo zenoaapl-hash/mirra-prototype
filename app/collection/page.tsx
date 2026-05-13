@@ -22,13 +22,13 @@ export default function CollectionPage() {
         style={{background:`radial-gradient(circle,${C.violet}18,transparent)`}}/>
       <div className="mirra-container">
         <SectionHeader eyebrow="Your Collection" title="Digital identity items"
-          subtitle="Items you've earned, collected, and curated — yours forever"/>
+          subtitle="Items you've earned, collected, and curated — always in your MIRRA collection"/>
 
         {/* Stats */}
         <div className="grid grid-cols-3 gap-3 mb-5 max-w-sm mx-auto lg:max-w-none lg:grid-cols-3 lg:w-auto lg:max-w-xs">
           {[
             {label:'Items',        value:collectionItems.length, color:C.lavender},
-            {label:'Trade Credit', value:`${totalCredit}⬥`,      color:C.violet},
+            {label:'MIRRA Credits', value:`${totalCredit} cr`,      color:C.violet},
             {label:'Worlds',       value:new Set(collectionItems.map(i=>i.worldId).filter(Boolean)).size, color:'#A78BFA'},
           ].map(s=>(
             <div key={s.label} className="glass-card rounded-2xl p-4 text-center">
@@ -45,10 +45,13 @@ export default function CollectionPage() {
             <RefreshCw size={16}/>
           </div>
           <div>
-            <div className="font-display font-bold text-xs text-white mb-0.5">Trade Credit</div>
+            <div className="font-display font-bold text-xs text-white mb-0.5">MIRRA Credits</div>
             <p className="text-xs leading-relaxed" style={{color:C.muted}}>
               Items can be traded in for MIRRA Credits toward future drops and world access.
               Your items never expire — trade-in is always optional.
+            </p>
+            <p className="text-xs mt-1.5" style={{color:'rgba(161,161,170,0.45)'}}>
+              MIRRA Credits are platform credits only. They have no cash value outside MIRRA.
             </p>
           </div>
         </div>
@@ -94,10 +97,10 @@ export default function CollectionPage() {
         </div>
 
         <div className="flex justify-center">
-          <Link href="/profile"
+          <Link href="/profile#mirra-self"
             className="flex items-center gap-2 px-7 py-4 rounded-2xl font-display font-bold text-sm text-white"
             style={{background:`linear-gradient(135deg,${C.plum},${C.violet})`,boxShadow:`0 6px 24px ${C.plum}50`}}>
-            <Sparkles size={14}/> Use items on MIRRA Self
+            <Sparkles size={14}/> Preview items on my MIRRA Self
           </Link>
         </div>
       </div>
@@ -121,8 +124,8 @@ export default function CollectionPage() {
             </div>
             <div className="glass-card rounded-xl p-3 mb-4 flex justify-between items-center">
               <div>
-                <div className="text-xs" style={{color:C.muted}}>Trade Credit Value</div>
-                <div className="font-display font-extrabold text-lg" style={{color:C.lavender}}>{detail.tradeValue}⬥</div>
+                <div className="text-xs" style={{color:C.muted}}>MIRRA Credits Value</div>
+                <div className="font-display font-extrabold text-lg" style={{color:C.lavender}}>{detail.tradeValue} cr</div>
               </div>
               <button className="flex items-center gap-1.5 glass px-3 py-2 rounded-xl text-xs font-display font-semibold"
                 style={{color:C.lavender,border:`1px solid ${C.violet}30`}}>
@@ -130,7 +133,7 @@ export default function CollectionPage() {
               </button>
             </div>
             <div className="grid grid-cols-2 gap-2">
-              <Link href="/profile"
+              <Link href="/profile#mirra-self"
                 className="flex items-center justify-center gap-1.5 py-3 rounded-xl font-display font-bold text-sm text-white"
                 style={{background:`linear-gradient(135deg,${C.plum},${C.violet})`}}>
                 <Sparkles size={13}/> Use on Self

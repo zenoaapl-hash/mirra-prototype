@@ -16,7 +16,7 @@ export default function DropsPage() {
         style={{background:`radial-gradient(circle,${C.violet}18,transparent)`}}/>
       <div className="mirra-container">
         <SectionHeader eyebrow="Creator Drops" title="Limited drops from creators you love"
-          subtitle="Transparent identity item bundles — one-time purchase, yours forever"/>
+          subtitle="Transparent identity item bundles — one-time purchase, Always in your collection"/>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {drops.map(drop=>{
@@ -93,7 +93,7 @@ export default function DropsPage() {
                     <Link href="/checkout"
                       className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl font-display font-bold text-sm text-white"
                       style={{background:`linear-gradient(135deg,${C.plum},${C.violet})`}}>
-                      Claim · ${drop.price.us}
+                      Get bundle · ${drop.price.us}
                     </Link>
                   </div>
                 </div>
@@ -185,11 +185,11 @@ function DropDetail({ drop, onBack }: { drop: typeof drops[0]; onBack: ()=>void 
         <Link href="/checkout"
           className="flex items-center justify-center gap-2 w-full py-4 rounded-2xl font-display font-bold text-base text-white mb-3"
           style={{background:`linear-gradient(135deg,${C.plum},${C.violet})`,boxShadow:`0 8px 32px ${C.plum}50`}}>
-          Claim Drop · ${drop.price.us}
+          Get bundle · ${drop.price.us}
           <span className="text-sm font-normal opacity-60">/ £{drop.price.uk}</span>
         </Link>
         <p className="text-xs text-center" style={{color:C.subtle}}>
-          One-time purchase · No hidden fees · Yours forever · Continue to PayPal
+          One-time purchase · No hidden fees · Always in your collection · Continue to PayPal
         </p>
       </div>
     </div>

@@ -43,7 +43,7 @@ export const WORLD_GRADIENTS: Record<string, { bg: string; accent: string }> = {
   'london-alt-summer':   { bg: 'linear-gradient(135deg, #1A1028 0%, #500F4A 60%, #8B348A 100%)', accent: '#C4B5FD' },
   'la-soft-launch':      { bg: 'linear-gradient(135deg, #1A1028 0%, #1E3A5F 60%, #2563EB 100%)', accent: '#60A5FA' },
   'cozy-horror-weekend': { bg: 'linear-gradient(135deg, #08070D 0%, #1A1028 60%, #2D1B69 100%)', accent: '#A78BFA' },
-  'festival-fit-lab':    { bg: 'linear-gradient(135deg, #1A1028 0%, #065F46 60%, #059669 100%)', accent: '#34D399' },
+  'festival-fit-lab':    { bg: 'linear-gradient(135deg, #1A1028 0%, #2D1B69 60%, #4C1D95 100%)', accent: '#A78BFA' },
   'study-cafe-quest':    { bg: 'linear-gradient(135deg, #1A1028 0%, #1C1C4E 60%, #3730A3 100%)', accent: '#818CF8' },
 };
 
@@ -311,7 +311,7 @@ export const creatorBenefits = [
   { icon: '💰', title: 'Paid Micro-Clubs',    desc: 'Charge fans for exclusive world access — you set the price, keep 80%' },
   { icon: '🎯', title: 'Creator-Led Drops',   desc: 'Launch limited digital item collections tied to your personal brand'  },
   { icon: '⚡', title: 'Fan Quests',          desc: 'Design challenges that deepen fan relationships and drive engagement'  },
-  { icon: '🏺', title: 'Digital Collectibles',desc: 'Co-design exclusive charms, badges, and effects with our design team' },
+  { icon: '🏺', title: 'Digital Identity Items',desc: 'Co-design exclusive charms, badges, and effects with our design team' },
   { icon: '🤝', title: 'Real-World Perks',    desc: 'Partner with brands to offer exclusive IRL rewards to your fans'      },
   { icon: '📊', title: 'Creator Analytics',   desc: 'Understand your community identity beyond follows and likes'           },
 ];

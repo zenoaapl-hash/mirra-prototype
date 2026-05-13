@@ -72,7 +72,10 @@ function IdentityCard({ profile }: { profile: ReturnType<typeof buildProfile> })
               Locked
             </div>
             <div className="text-xs mt-1" style={{ color: C.muted }}>MIRRA Score</div>
-            <div className="text-xs mt-0.5" style={{ color: 'rgba(161,161,170,0.45)' }}>Unlocks after first quest</div>
+            <div className="text-xs mt-0.5 max-w-[140px] text-right leading-snug"
+              style={{ color: 'rgba(161,161,170,0.45)' }}>
+              Complete your first quest to unlock
+            </div>
           </div>
         </div>
         <p className="text-sm italic mt-2 mb-4" style={{ color: C.muted }}>"{profile.aesthetic.tagline}"</p>
@@ -221,6 +224,21 @@ export default function ProfilePage() {
                   </div>
                 ))}
               </div>
+            </div>
+
+            {/* MIRRA Score explainer */}
+            <div className="glass-card rounded-2xl p-4"
+              style={{borderColor:`rgba(196,181,253,0.1)`}}>
+              <div className="flex items-start justify-between mb-2">
+                <div className="text-xs font-display font-semibold uppercase"
+                  style={{ color: C.muted, letterSpacing: '0.1em' }}>MIRRA Score</div>
+                <div className="font-display font-bold text-xs px-2 py-0.5 rounded"
+                  style={{ color: C.muted, background: 'rgba(196,181,253,0.06)' }}>Locked</div>
+              </div>
+              <p className="text-xs leading-relaxed" style={{ color: 'rgba(161,161,170,0.6)' }}>
+                MIRRA Score reflects how deeply you engage across worlds and quests.
+                Complete your first quest to unlock it and start building your identity depth.
+              </p>
             </div>
 
             {/* Recommended world */}

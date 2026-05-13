@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { Sparkles, ArrowRight, ChevronRight, Gift, Ticket, ShoppingBag, Globe, Zap, Star } from 'lucide-react';
 import { worlds, drops, WORLD_GRADIENTS } from '@/lib/data';
-import { WorldCard, TagChip, ItemCard, ProgressBar, C, MirraLogo, IconBox } from '@/components/ui';
+import { WorldCard, TagChip, ItemCard, ProgressBar, C, MirraLogo } from '@/components/ui';
 
 export default function Home() {
   return (
@@ -18,7 +18,7 @@ export default function Home() {
         <div className="mirra-container w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-            {/* LEFT — copy */}
+            {/* LEFT */}
             <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
               <div className="glass inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-display font-semibold uppercase mb-6"
                 style={{color:C.lavender,letterSpacing:'0.14em'}}>
@@ -26,16 +26,18 @@ export default function Home() {
                 Early access pilot now forming
               </div>
 
-              <h1 className="mirra-headline mb-6">
+              <h1 className="mirra-headline mb-4">
                 <span className="block text-gradient-violet">Your identity</span>
                 <span className="block" style={{color:C.pearl}}>is your</span>
                 <span className="block text-gradient-rose">culture drop</span>
               </h1>
 
-              <p className="text-base sm:text-lg leading-relaxed max-w-md mb-8"
+              <p className="text-base sm:text-lg leading-relaxed max-w-md mb-3"
                 style={{color:C.muted, fontFamily:'DM Sans'}}>
-                MIRRA is where you build a living digital identity — through creator worlds,
-                quests, and digital identity items that actually mean something.
+                A social profile that grows through creator worlds, quests, digital identity items, and real-world perks.
+              </p>
+              <p className="text-sm leading-relaxed max-w-md mb-8" style={{color:'rgba(161,161,170,0.6)',fontFamily:'DM Sans'}}>
+                For Gen Z and young Millennials in the US, UK, and Japan.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
@@ -50,16 +52,13 @@ export default function Home() {
                   Join waitlist <ArrowRight size={14}/>
                 </Link>
               </div>
-
               <div className="mt-6 glass px-4 py-2 rounded-full flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full" style={{background:C.violet}}/>
-                <p className="text-xs" style={{color:C.muted,fontFamily:'DM Sans'}}>
-                  Founding member access opening soon
-                </p>
+                <p className="text-xs" style={{color:C.muted,fontFamily:'DM Sans'}}>Founding member access opening soon</p>
               </div>
             </div>
 
-            {/* RIGHT — product preview card */}
+            {/* RIGHT — product preview */}
             <div className="flex justify-center lg:justify-end">
               <div className="w-full max-w-sm glass-card rounded-3xl overflow-hidden glow-violet">
                 <div className="p-5 border-b" style={{borderColor:'rgba(196,181,253,0.08)',background:`${C.plum}15`}}>
@@ -83,7 +82,7 @@ export default function Home() {
                 </div>
                 <div className="p-5">
                   <div className="text-xs font-display font-semibold uppercase mb-3"
-                    style={{color:C.muted,letterSpacing:'0.1em'}}>Starting Collection</div>
+                    style={{color:C.muted,letterSpacing:'0.1em'}}>Identity Collection</div>
                   <div className="flex gap-3">
                     {[
                       {r:'epic' as const,     t:'Profile Charm',  gk:'neon-koi'},
@@ -95,14 +94,41 @@ export default function Home() {
                     ))}
                   </div>
                   <div className="mt-4 h-1.5 rounded-full overflow-hidden" style={{background:'rgba(255,255,255,0.06)'}}>
-                    <div className="h-full w-0 rounded-full"
-                      style={{background:`linear-gradient(90deg,${C.plum},${C.violet})`}}/>
+                    <div className="h-full w-0 rounded-full" style={{background:`linear-gradient(90deg,${C.plum},${C.violet})`}}/>
                   </div>
                   <p className="text-xs mt-1.5" style={{color:'rgba(161,161,170,0.5)'}}>Join a world to start earning XP</p>
                 </div>
               </div>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* ── HOW IT WORKS ── */}
+      <section className="py-16 relative">
+        <div className="mirra-container">
+          <div className="text-center mb-10">
+            <h2 className="mirra-headline-sm text-gradient-violet">How MIRRA works</h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { n:'01', title:'Take the quiz',         desc:'Build your digital identity in 6 questions',         icon:<Sparkles size={20}/> },
+              { n:'02', title:'Enter a world',          desc:'Join weekly creator-led culture worlds',              icon:<Globe size={20}/> },
+              { n:'03', title:'Collect identity items', desc:'Earn charms, badges, effects, and avatar layers',    icon:<Star size={20}/> },
+              { n:'04', title:'Unlock perks',           desc:'Your digital identity earns real-world rewards',     icon:<Gift size={20}/> },
+            ].map(step => (
+              <div key={step.n} className="glass-card rounded-2xl p-5 relative overflow-hidden">
+                <div className="absolute top-3 right-3 font-display font-bold text-xs"
+                  style={{color:`${C.violet}40`}}>{step.n}</div>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
+                  style={{background:`${C.violet}20`,border:`1px solid ${C.violet}30`,color:C.lavender}}>
+                  {step.icon}
+                </div>
+                <div className="font-display font-bold text-sm text-white mb-1">{step.title}</div>
+                <p className="text-xs leading-relaxed" style={{color:C.muted}}>{step.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -144,8 +170,9 @@ export default function Home() {
               <Zap size={10}/> Creator Drops
             </div>
             <h2 className="mirra-headline-sm text-gradient-violet">Drops from creators you love</h2>
-            <p className="text-sm mt-2" style={{color:C.muted}}>Limited identity items tied to your favourite creators</p>
+            <p className="text-sm mt-2" style={{color:C.muted}}>Transparent identity item bundles — one-time purchase</p>
           </div>
+          {/* No nested links — outer card is div, inner CTA is Link */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
             {drops.map(drop=>{
               const wg = WORLD_GRADIENTS[drop.gradientKey]||WORLD_GRADIENTS['tokyo-night-arcade'];
@@ -176,7 +203,7 @@ export default function Home() {
                     <Link href="/checkout"
                       className="flex items-center justify-center gap-2 w-full mt-4 py-3 rounded-xl font-display font-bold text-sm text-white"
                       style={{background:`linear-gradient(135deg,${C.plum},${C.violet})`}}>
-                      View bundle — ${drop.price.us}
+                      Get bundle — ${drop.price.us}
                     </Link>
                   </div>
                 </div>
@@ -192,10 +219,10 @@ export default function Home() {
           <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 glass px-3 py-1.5 rounded-full text-xs font-display font-semibold uppercase mb-4"
               style={{color:C.lavender,letterSpacing:'0.12em'}}>
-              <Star size={10}/> Digital Collection
+              <Star size={10}/> Identity Collection
             </div>
             <h2 className="mirra-headline-sm text-gradient-violet">Items that live in your identity</h2>
-            <p className="text-sm mt-2" style={{color:C.muted}}>Charms, badges, effects, avatar layers — yours forever</p>
+            <p className="text-sm mt-2" style={{color:C.muted}}>Charms, badges, effects, avatar layers — always in your MIRRA collection</p>
           </div>
           <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-3 mb-6">
             {[
@@ -217,13 +244,13 @@ export default function Home() {
             <Link href="/collection"
               className="inline-flex items-center gap-2 glass rounded-2xl px-6 py-3 text-sm font-display font-semibold transition-all hover:border-white/20"
               style={{color:C.lavender}}>
-              View your collection <ChevronRight size={14}/>
+              View identity collection <ChevronRight size={14}/>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ── REAL-WORLD PERKS ── */}
+      {/* ── PERKS ── */}
       <section className="py-20">
         <div className="mirra-container">
           <div className="text-center mb-10">
@@ -232,13 +259,12 @@ export default function Home() {
               <Gift size={10}/> Real-World Perks
             </div>
             <h2 className="mirra-headline-sm text-gradient-violet">Digital identity unlocks IRL rewards</h2>
-            <p className="text-sm mt-2" style={{color:C.muted}}>Your digital world earns you real things</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
-              {icon:<Ticket size={18}/>,title:'Matcha Café Discount',desc:'Tokyo Night Arcade members get 20% off at partner cafés in Japan',tag:'Japan · Food'},
-              {icon:<ShoppingBag size={18}/>,title:'Festival Early Access',desc:'Festival Fit Lab world unlocks presale access to partner festivals in the UK',tag:'UK · Events'},
-              {icon:<Gift size={18}/>,title:'Creator Merch First Look',desc:'Quest completers get first access to creator merchandise drops',tag:'US · Fashion'},
+              {icon:<Ticket size={18}/>,title:'Matcha Café Discount',      desc:'Tokyo Night Arcade members get 20% off at partner cafés in Japan',            tag:'Japan · Food'},
+              {icon:<ShoppingBag size={18}/>,title:'Festival Early Access',desc:'Festival Fit Lab world unlocks presale access to partner festivals in the UK', tag:'UK · Events'},
+              {icon:<Gift size={18}/>,title:'Creator Merch First Look',    desc:'Quest completers get first access to creator merchandise drops',               tag:'US · Fashion'},
             ].map(perk=>(
               <div key={perk.title} className="glass-card rounded-2xl p-5 flex gap-4 items-start">
                 <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
@@ -261,15 +287,15 @@ export default function Home() {
         <div className="orb w-[500px] h-[500px] -bottom-40 left-1/2 -translate-x-1/2 opacity-25"
           style={{background:`radial-gradient(circle,${C.plum}28,transparent)`}}/>
         <div className="mirra-container-narrow text-center relative z-10">
-          <div className="w-16 h-16 rounded-3xl flex items-center justify-center text-3xl mx-auto mb-6 float glow-violet"
+          <div className="w-16 h-16 rounded-3xl flex items-center justify-center mx-auto mb-6 float glow-violet"
             style={{background:`linear-gradient(135deg,${C.plum},${C.violet})`}}>
-            ✦
+            <Star size={28} className="text-white opacity-90"/>
           </div>
           <h2 className="mirra-headline-sm text-gradient-violet mb-4">
-            Be first to enter<br/>the MIRRA season
+            Become a founding member of Season 01
           </h2>
           <p className="text-sm leading-relaxed mb-8" style={{color:C.muted}}>
-            Founding members get early world access, an exclusive item pack, and a Season 01 founding badge.
+            Founding members get early world access, a free starter identity item pack, and a Season 01 founding badge.
           </p>
           <Link href="/waitlist"
             className="flex items-center justify-center gap-2 w-full py-4 rounded-2xl font-display font-bold text-base text-white transition-all hover:scale-[1.02] active:scale-[0.98]"

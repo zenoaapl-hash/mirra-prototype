@@ -58,8 +58,8 @@ export default function WaitlistPage() {
           </div>
           <h1 className="font-display font-extrabold text-white mb-3 leading-tight"
             style={{fontSize:'clamp(1.8rem,6vw,2.8rem)'}}>
-            Be first to enter<br/>
-            <span className="text-gradient-violet">the first culture season.</span>
+            Become a founding member<br/>
+            <span className="text-gradient-violet">of Season 01.</span>
           </h1>
           <p className="text-sm leading-relaxed" style={{color:C.muted}}>
             Founding members get early world access, a free starter identity item pack,
