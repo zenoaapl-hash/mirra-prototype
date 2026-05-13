@@ -67,9 +67,12 @@ function IdentityCard({ profile }: { profile: ReturnType<typeof buildProfile> })
             </p>
           </div>
           <div className="text-right">
-            <div className="font-display font-extrabold text-xl text-gradient-violet">∅</div>
-            <div className="text-xs" style={{ color: C.muted }}>MIRRA Score</div>
-            <div className="text-xs mt-0.5" style={{ color: 'rgba(161,161,170,0.5)' }}>Unlocks after first world</div>
+            <div className="font-display font-bold text-sm px-2.5 py-1 rounded-lg inline-block"
+              style={{ color: C.muted, background: 'rgba(196,181,253,0.06)', border: '1px solid rgba(196,181,253,0.12)' }}>
+              Locked
+            </div>
+            <div className="text-xs mt-1" style={{ color: C.muted }}>MIRRA Score</div>
+            <div className="text-xs mt-0.5" style={{ color: 'rgba(161,161,170,0.45)' }}>Unlocks after first quest</div>
           </div>
         </div>
         <p className="text-sm italic mt-2 mb-4" style={{ color: C.muted }}>"{profile.aesthetic.tagline}"</p>

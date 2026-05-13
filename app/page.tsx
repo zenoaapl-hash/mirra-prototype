@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { Sparkles, ArrowRight, ChevronRight, Gift, Ticket, ShoppingBag } from 'lucide-react';
+import { Sparkles, ArrowRight, ChevronRight, Gift, Ticket, ShoppingBag, Globe, Zap, Star } from 'lucide-react';
 import { worlds, drops, WORLD_GRADIENTS } from '@/lib/data';
 import { WorldCard, TagChip, ItemCard, ProgressBar, C, MirraLogo, IconBox } from '@/components/ui';
 
@@ -115,7 +115,7 @@ export default function Home() {
           <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 glass px-3 py-1.5 rounded-full text-xs font-display font-semibold uppercase mb-4"
               style={{color:C.lavender,letterSpacing:'0.12em'}}>
-              🌐 Weekly Worlds
+              <Globe size={10}/> Weekly Worlds
             </div>
             <h2 className="mirra-headline-sm text-gradient-violet">Culture drops every week</h2>
             <p className="text-sm mt-2" style={{color:C.muted}}>Limited-time worlds hosted by creators you actually follow</p>
@@ -141,7 +141,7 @@ export default function Home() {
           <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 glass px-3 py-1.5 rounded-full text-xs font-display font-semibold uppercase mb-4"
               style={{color:C.lavender,letterSpacing:'0.12em'}}>
-              ⚡ Creator Drops
+              <Zap size={10}/> Creator Drops
             </div>
             <h2 className="mirra-headline-sm text-gradient-violet">Drops from creators you love</h2>
             <p className="text-sm mt-2" style={{color:C.muted}}>Limited identity items tied to your favourite creators</p>
@@ -150,7 +150,7 @@ export default function Home() {
             {drops.map(drop=>{
               const wg = WORLD_GRADIENTS[drop.gradientKey]||WORLD_GRADIENTS['tokyo-night-arcade'];
               return (
-                <Link href="/drops" key={drop.id} className="glass-card rounded-3xl overflow-hidden hover:border-white/15 transition-all block">
+                <div key={drop.id} className="glass-card rounded-3xl overflow-hidden">
                   <div className="h-24 relative flex items-end px-5 pb-3" style={{background:wg.bg}}>
                     <div className="absolute inset-0" style={{background:'rgba(0,0,0,0.3)'}}/>
                     <div className="relative z-10">
@@ -175,12 +175,11 @@ export default function Home() {
                     <ProgressBar value={drop.claimedSlots} max={drop.totalSlots} color={C.violet} label="Spaces claimed"/>
                     <Link href="/checkout"
                       className="flex items-center justify-center gap-2 w-full mt-4 py-3 rounded-xl font-display font-bold text-sm text-white"
-                      style={{background:`linear-gradient(135deg,${C.plum},${C.violet})`}}
-                      onClick={e=>e.stopPropagation()}>
+                      style={{background:`linear-gradient(135deg,${C.plum},${C.violet})`}}>
                       View bundle — ${drop.price.us}
                     </Link>
                   </div>
-                </Link>
+                </div>
               );
             })}
           </div>
@@ -193,7 +192,7 @@ export default function Home() {
           <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 glass px-3 py-1.5 rounded-full text-xs font-display font-semibold uppercase mb-4"
               style={{color:C.lavender,letterSpacing:'0.12em'}}>
-              ✦ Digital Collection
+              <Star size={10}/> Digital Collection
             </div>
             <h2 className="mirra-headline-sm text-gradient-violet">Items that live in your identity</h2>
             <p className="text-sm mt-2" style={{color:C.muted}}>Charms, badges, effects, avatar layers — yours forever</p>

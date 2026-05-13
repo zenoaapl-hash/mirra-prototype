@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Zap, Gem, Clock, Package, Gift, Mic } from 'lucide-react';
 import { worlds, WORLD_GRADIENTS } from '@/lib/data';
 import { WorldCard, SectionHeader, TagChip, ProgressBar, C } from '@/components/ui';
 
@@ -58,12 +58,12 @@ export default function WorldsPage() {
                   <div className="flex flex-col justify-between gap-4">
                     <div className="flex gap-3">
                       {[
-                        {label:`${featured.questCount} quests`, icon:'⚡'},
-                        {label:`${featured.itemCount} items`,   icon:'💎'},
-                        {label:`${featured.daysLeft}d left`,    icon:'⏱'},
+                        {label:`${featured.questCount} quests`, icon:<Zap size={13}/>},
+                        {label:`${featured.itemCount} items`,   icon:<Gem size={13}/>},
+                        {label:`${featured.daysLeft}d left`,    icon:<Clock size={13}/>},
                       ].map(s=>(
-                        <div key={s.label} className="flex-1 rounded-xl py-2 text-center glass">
-                          <div className="text-base mb-0.5">{s.icon}</div>
+                        <div key={s.label} className="flex-1 rounded-xl py-2.5 text-center glass">
+                          <div className="flex justify-center mb-0.5" style={{color:C.lavender}}>{s.icon}</div>
                           <div className="text-xs font-display font-semibold" style={{color:C.lavender}}>{s.label}</div>
                         </div>
                       ))}
@@ -95,10 +95,11 @@ export default function WorldsPage() {
           ))}
         </div>
         {filtered.length === 0 && (
-          <div className="text-center py-12" style={{color:C.muted}}>
-            <div className="text-3xl mb-3">🔮</div>
+          <div className="text-center py-12">
+            <div className="w-12 h-12 rounded-2xl glass flex items-center justify-center mx-auto mb-3"
+              style={{color:C.muted}}><Package size={20}/></div>
             <div className="font-display font-bold text-sm text-white mb-1">No worlds here yet</div>
-            <p className="text-xs">New worlds launch every season</p>
+            <p className="text-xs" style={{color:C.muted}}>New worlds launch every season</p>
           </div>
         )}
 
@@ -113,13 +114,16 @@ export default function WorldsPage() {
             style={{color:C.muted,letterSpacing:'0.1em'}}>What's inside each world</div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
-              {icon:'⚡',title:'Quests',      desc:'Complete challenges to earn items and XP'},
-              {icon:'💎',title:'Items',        desc:'Exclusive charms, badges and effects'},
-              {icon:'🎤',title:'Creator Host', desc:'Live with the creator in their world'},
-              {icon:'🎁',title:'IRL Perks',    desc:'Real-world rewards unlocked by your items'},
+              {icon:<Zap size={16}/>,  title:'Quests',      desc:'Complete challenges to earn items and XP'},
+              {icon:<Gem size={16}/>,  title:'Items',        desc:'Exclusive charms, badges and effects'},
+              {icon:<Mic size={16}/>,  title:'Creator Host', desc:'Live with the creator in their world'},
+              {icon:<Gift size={16}/>, title:'IRL Perks',    desc:'Real-world rewards unlocked by your items'},
             ].map(f=>(
               <div key={f.title} className="rounded-xl p-4" style={{background:'rgba(196,181,253,0.04)'}}>
-                <div className="text-xl mb-2">{f.icon}</div>
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center mb-3"
+                  style={{background:`${C.violet}20`,border:`1px solid ${C.violet}25`,color:C.lavender}}>
+                  {f.icon}
+                </div>
                 <div className="font-display font-bold text-xs text-white mb-1">{f.title}</div>
                 <div className="text-xs leading-relaxed" style={{color:C.muted}}>{f.desc}</div>
               </div>
